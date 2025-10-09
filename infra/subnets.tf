@@ -1,8 +1,3 @@
-provider "aws" {
-  region = var.region
-}
-
-
 resource "aws_subnet" "public_a" {
   vpc_id                  = aws_vpc.umbrella.id
   cidr_block              = "10.0.0.0/24"
