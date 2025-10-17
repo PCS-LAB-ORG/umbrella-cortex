@@ -44,7 +44,7 @@ resource "aws_iam_role_policy" "flow_logs_policy" {
 
 resource "aws_flow_log" "vpc_flow_log" {
   traffic_type = "ALL"
-  log_destination      = aws_s3_bucket.tfstate_bucket_umbrella.id
+  log_destination = aws_s3_bucket.tfstate_bucket_umbrella.arn
   log_destination_type = "s3"
   vpc_id               = aws_vpc.umbrella.id
    tags = {
