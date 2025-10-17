@@ -44,10 +44,9 @@ resource "aws_iam_role_policy" "flow_logs_policy" {
 
 resource "aws_flow_log" "vpc_flow_log" {
   traffic_type = "ALL"
-  log_destination      = aws_cloudwatch_log_group.vpc_flow_logs.arn
-  log_destination_type = "cloud-watch-logs"
+  log_destination      = aws_s3_bucket.tfstate_bucket.id
+  log_destination_type = "s3"
   vpc_id               = aws_vpc.umbrella.id
-  iam_role_arn = aws_iam_role.flow_logs_role.arn
    tags = {
     owner = var.owner
   }
