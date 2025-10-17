@@ -1,11 +1,9 @@
-variable "region" {
-  description = "AWS Region"
+variable "owner" {
+  description = "Owner of the resources"
   type        = string
-  default     = "us-east-1"
 }
 
-variable "owner" {
-  description = "Tag owner for all resources"
+variable "region" {
+  description = "AWS region"
   type        = string
-  default     = "mdalbes"
 }
