@@ -6,14 +6,14 @@ provider "aws" {
 data "aws_subnet" "public_a" {
   filter {
     name   = "tag:Name"
-    values = [var.subnet_name]
+    values = ["public-a-${var.owner}"]
   }
 }
 
 data "aws_vpc" "selected" {
   filter {
     name   = "tag:Name"
-    values = [var.vpc_name]
+    values = ["umbrella_vpc-${var.owner}"]
   }
 }
 
@@ -21,7 +21,7 @@ data "aws_vpc" "selected" {
 resource "aws_security_group" "public_sg" {
   name        = "public-ssh-sg"
   description = "Allow SSH inbound"
-  vpc_id      = data.aws_vpc.vpc_idselected.id
+  vpc_id      = data.aws_vpc.selected.id
 
   ingress {
     description       = "SSH from anywhere"
@@ -47,7 +47,7 @@ data "aws_ami" "vulnerable_linux" {
 
   filter {
     name   = "name"
-    values = ["amzn2-ami-hvm-2.0.20200101.0-x86_64-ebs"] # Early 2020 version (example vulnerable)
+    values = ["al2023-ami-2023.9.20251014.0-kernel-6.12-x86_64"] # Early 2020 version (example vulnerable)
   }
 }
 
