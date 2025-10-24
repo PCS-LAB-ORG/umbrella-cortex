@@ -68,6 +68,7 @@ resource "aws_instance" "vulnerable_instance" {
   vpc_security_group_ids = [aws_security_group.public_sg.id]
   associate_public_ip_address = true
   user_data = file("./vulnscript.sh")
+  iam_instance_profile        = "pcs-role-cortex-integrations"
 
   tags = {
     Name  = "vulnerable-linux-instance-${var.owner}"
