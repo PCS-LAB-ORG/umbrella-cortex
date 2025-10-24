@@ -70,7 +70,7 @@ resource "aws_instance" "vulnerable_instance" {
   user_data = file("./vulnscript.sh")
 
   tags = {
-    Name  = "vulnerable-linux-instance"
+    Name  = "vulnerable-linux-instance-${var.owner}"
     Owner = var.owner
   }
 }
