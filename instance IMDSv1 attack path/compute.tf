@@ -1,7 +1,3 @@
-provider "aws" {
-  region = var.region
-}
-
 # Data source to get the public subnet "public-a" details (assumed already exist in infra)
 data "aws_subnet" "public_a" {
   filter {
