@@ -4,7 +4,7 @@ resource "aws_subnet" "public_a" {
   availability_zone       = "${var.region}a"
   map_public_ip_on_launch = true
   tags = {
-    Name  = "public-a"
+    Name  = "public-a-${var.owner}"
     owner = var.owner
   }
 }
@@ -15,7 +15,7 @@ resource "aws_subnet" "public_c" {
   availability_zone       = "${var.region}c"
   map_public_ip_on_launch = true
   tags = {
-    Name  = "public-c"
+    Name  = "public-c-${var.owner}"
     owner = var.owner
   }
 }
@@ -25,7 +25,7 @@ resource "aws_subnet" "compute_a" {
   cidr_block        = "10.0.2.0/24"
   availability_zone = "${var.region}a"
   tags = {
-    Name  = "compute-a"
+    Name  = "compute-a-${var.owner}"
     owner = var.owner
   }
 }
@@ -35,7 +35,7 @@ resource "aws_subnet" "compute_b" {
   cidr_block        = "10.0.3.0/24"
   availability_zone = "${var.region}b"
   tags = {
-    Name  = "compute-b"
+    Name  = "compute-b-${var.owner}"
     owner = var.owner
   }
 }
@@ -45,7 +45,7 @@ resource "aws_subnet" "database_a" {
   cidr_block        = "10.0.4.0/24"
   availability_zone = "${var.region}a"
   tags = {
-    Name  = "database-a"
+    Name  = "database-a-${var.owner}"
     owner = var.owner
   }
 }
@@ -55,7 +55,7 @@ resource "aws_subnet" "compute_a2" {
   cidr_block        = "10.0.5.0/24"
   availability_zone = "${var.region}a"
   tags = {
-    Name  = "compute-a-2"
+    Name  = "compute-a-2-${var.owner}"
     owner = var.owner
   }
 }

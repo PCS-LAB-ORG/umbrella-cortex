@@ -8,7 +8,7 @@ resource "aws_internet_gateway" "gw" {
 resource "aws_route_table" "rt_public" {
   vpc_id = aws_vpc.umbrella.id
   tags = {
-    Name  = "rt-public"
+    Name  = "rt-public-${var.owner}"
     owner = var.owner
   }
 
@@ -21,7 +21,7 @@ resource "aws_route_table" "rt_public" {
 resource "aws_route_table" "rt_compute" {
   vpc_id = aws_vpc.umbrella.id
   tags = {
-    Name  = "rt-compute"
+    Name  = "rt-compute-${var.owner}"
     owner = var.owner
   }
 
@@ -34,7 +34,7 @@ resource "aws_route_table" "rt_compute" {
 resource "aws_route_table" "rt_database" {
   vpc_id = aws_vpc.umbrella.id
   tags = {
-    Name  = "rt-database"
+    Name  = "rt-database-${var.owner}"
     owner = var.owner
   }
 

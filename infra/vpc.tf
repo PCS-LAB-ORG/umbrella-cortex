@@ -3,7 +3,7 @@ resource "aws_vpc" "umbrella" {
   enable_dns_support   = true
   enable_dns_hostnames = true
   tags = {
-    Name  = "umbrella_vpc"
+    Name  = "umbrella_vpc-${var.owner}"
     owner = var.owner
   }
 }
