@@ -41,22 +41,37 @@ resource "aws_security_group" "public_sg" {
 }
 
 # Instance using deliberately a vulnerable image (here, an older Amazon Linux 2 AMI)
-data "aws_ami" "vulnerable_linux" {
+
+
+data "aws_ami" "ami_filter" {
   most_recent = true
   owners      = ["amazon"]
-
   filter {
     name   = "name"
-    values = ["al2023-ami-2023.9.20251014.0-kernel-6.12-x86_64"] # Early 2020 version (example vulnerable)
+    values = ["amzn2-ami-kernel-5.10-hvm-*"]
   }
-}
+  filter {
+    name   = "architecture"
+    values = ["x86_64"]
+  }
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+  filter {
+    name   = "root-device-type"
+    values = ["ebs"]
+  }
 
+
+}
 resource "aws_instance" "vulnerable_instance" {
-  ami                    = data.aws_ami.vulnerable_linux.id
+  ami                    = data.aws_ami.ami_filter.id 
   instance_type          = "t3.micro"
   subnet_id              = data.aws_subnet.public_a.id
   vpc_security_group_ids = [aws_security_group.public_sg.id]
   associate_public_ip_address = true
+  user_data = file("./vulnscript.sh")
 
   tags = {
     Name  = "vulnerable-linux-instance"
