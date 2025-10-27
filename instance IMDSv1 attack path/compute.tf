@@ -25,7 +25,7 @@ resource "aws_security_group" "public_sg" {
     to_port           = 22
     protocol          = "tcp"
     cidr_blocks       = ["202.181.130.200/32"]
-    ipv6_cidr_blocks  = ["::/0"]
+    # ipv6_cidr_blocks  = ["::/0"]
   }
 
   egress {
